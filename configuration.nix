@@ -95,9 +95,12 @@
     isNormalUser = true;
     description = "User";
     extraGroups = [ "networkmanager" ];
-    openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK/fxdgZohay+O9ogtHi0/n+xwHfzPuuV9c/tZvR364C jake@jake-framework" ];
+    hashedPassword = "";
     packages = with pkgs; [
     #  thunderbird
+      qbittorrent
+      kodi
+      vlc
     ];
   };
 
@@ -118,8 +121,6 @@
   services.mullvad-vpn.enable = true;
   services.mullvad-vpn.package = pkgs.mullvad-vpn;
 
-  services.qemuGuest.enable = true;
-
   # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
   systemd.services."getty@tty1".enable = false;
   systemd.services."autovt@tty1".enable = false;
@@ -135,10 +136,9 @@
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
-    qbittorrent
     steam
     steamcontroller
-    kodi
+    spice-vdagent
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

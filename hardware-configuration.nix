@@ -27,5 +27,7 @@
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp1s0.useDHCP = lib.mkDefault true;
 
+  services.qemuGuest.enable = true;
+
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }
