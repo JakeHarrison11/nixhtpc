@@ -11,6 +11,17 @@
       ./home-manager.nix
     ];
 
+    nixpkgs.config = {
+      packageOverrides = pkgs: {
+        nur = import (builtins.fetchTarball {
+          url = "https://github.com/nix-community/NUR/archive/master.tar.gz";
+          sha256 = "1vkjm7wbvazfdbi7xhb92046cx48xg85mdxx9larkmxsmaxkr3fz";
+        }) {
+          inherit pkgs;
+        };
+      };
+    };
+
   # Bootloader.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/vda";
@@ -94,6 +105,9 @@
   services.displayManager.autoLogin.user = "jorkbox";
 
   services.mullvad-vpn.enable = true;
+  services.mullvad-vpn.package = pkgs.mullvad-vpn;
+
+
   services.qemuGuest.enable = true;
 
   # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
@@ -114,6 +128,7 @@
     qbittorrent
     steam
     steamcontroller
+    kodi
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
