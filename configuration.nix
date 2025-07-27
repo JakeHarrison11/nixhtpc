@@ -91,10 +91,21 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.jorkbox = {
+  users.users.user = {
     isNormalUser = true;
-    description = "Jorkbox";
+    description = "User";
+    extraGroups = [ "networkmanager" ];
+    openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK/fxdgZohay+O9ogtHi0/n+xwHfzPuuV9c/tZvR364C jake@jake-framework" ];
+    packages = with pkgs; [
+    #  thunderbird
+    ];
+  };
+
+  users.users.admin = {
+    isNormalUser = true;
+    description = "Administrator";
     extraGroups = [ "networkmanager" "wheel" ];
+    openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK/fxdgZohay+O9ogtHi0/n+xwHfzPuuV9c/tZvR364C jake@jake-framework" ];
     packages = with pkgs; [
     #  thunderbird
     ];
@@ -102,11 +113,10 @@
 
   # Enable automatic login for the user.
   services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "jorkbox";
+  services.displayManager.autoLogin.user = "user";
 
   services.mullvad-vpn.enable = true;
   services.mullvad-vpn.package = pkgs.mullvad-vpn;
-
 
   services.qemuGuest.enable = true;
 

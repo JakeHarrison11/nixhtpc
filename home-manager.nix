@@ -9,15 +9,19 @@ in
 
   home-manager.backupFileExtension = "backup";
 
-  home-manager.users.jorkbox = {
-    /* The home.stateVersion option does not have a default and must be set */
+  home-manager.users.admin = {
     home.stateVersion = "25.05";
-    /* Here goes the rest of your home-manager config, e.g. home.packages = [ pkgs.foo ]; */
+
     programs.git = {
       enable = true;
       userName  = "Jake Harrison";
       userEmail = "jakebytes@gmail.com";
     };
+  };
+
+  home-manager.users.user = {
+    /* The home.stateVersion option does not have a default and must be set */
+    home.stateVersion = "25.05";
 
     programs.firefox = {
       enable = true;
