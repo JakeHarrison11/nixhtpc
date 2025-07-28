@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./home-manager.nix
+      ./arrs.nix
     ];
 
     nixpkgs.config = {
@@ -101,6 +102,8 @@
       qbittorrent
       kodi
       vlc
+      webtorrent_desktop
+      popcorntime
     ];
   };
 
@@ -128,6 +131,13 @@
   # Install firefox.
   programs.firefox.enable = true;
 
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+  };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -136,9 +146,9 @@
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
-    steam
     steamcontroller
     spice-vdagent
+    sc-controller
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

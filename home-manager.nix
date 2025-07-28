@@ -44,10 +44,13 @@ in
         "favorite-apps" = [
           "org.gnome.Nautilus.desktop"
           "kodi.desktop"
+          "popcorntime.desktop"
+          "webtorrent-desktop.desktop"
           "firefox.desktop"
           "org.qbittorrent.qBittorrent.desktop"
           "mullvad-vpn.desktop"
           "org.gnome.Console.desktop"
+          "sc-controller.desktop"
         ];
       };
       # buttons make sense now
